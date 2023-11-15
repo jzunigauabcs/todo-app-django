@@ -19,17 +19,28 @@
         <h1>TODO App</h1>
       </header>
       <div class="todo">
-        <div class="todo-form line-bottom">
-          <input
-            type="text"
-            class="todo-input"
-            id="txtTask"
-            placeholder="Nueva tarea"
-          />
-        </div>
-        <ul class="todo-list"></ul>
+        <form action="{% url 'task:save' %}" method="post">
+          {% csrf_token %}
+          <div class="todo-form line-bottom">
+            <input
+              type="text"
+              class="todo-input"
+              id="txtTask"
+              placeholder="Nueva tarea"
+              name="txtTask"
+            />
+            <button id="btnAdd" class="btn btn-add">+ Nueva Tarea</button>
+          </div>
+        </form>
+        <ul class="todo-list">
+          {% if tasks %} {% for task in tasks %}
+          <li>
+            <label>{{task.task}}</label>
+            <a href="{% url 'task:delete' task.id %}">Eliminar</a>
+          </li>
+          {% endfor %} {% endif %}
+        </ul>
       </div>
-      <button id="btnAdd" class="btn btn-add">+ Nueva Tarea</button>
       <div>
         <strong>Tareas completadas: </strong
         ><span class="task-completes-count">0</span>

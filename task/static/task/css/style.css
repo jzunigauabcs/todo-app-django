@@ -34,12 +34,13 @@ div.todo {
 	border: none;
 	background-color: #aa7ae4;
 	color: white;
-	display: inline-block;
+	display: block;
 	font-size: 1em;
 	font-weight: bolder;
-	margin-top: -20px;
+	margin-top: 20px;
 	outline: none;
 	padding: 10px;
+	width: 100%;
 }
 .btn:hover {
   cursor: pointer;
