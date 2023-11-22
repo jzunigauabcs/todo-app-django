@@ -35,15 +35,16 @@
         <ul class="todo-list">
           {% if tasks %} {% for task in tasks %}
           <li>
-            <label>{{task.task}}</label>
-            <a href="{% url 'task:delete' task.id %}">Eliminar</a>
+            <span class="{{ task.complete|yesno:'task-complete,' }}">{{task.task}}</span>
+            <a href="{% url 'task:complete' task.id %}" class="btn btn-complete">Completar</a>
+            <a href="{% url 'task:delete' task.id %}" class="btn btn-delete">Eliminar</a>
           </li>
           {% endfor %} {% endif %}
         </ul>
       </div>
       <div>
         <strong>Tareas completadas: </strong
-        ><span class="task-completes-count">0</span>
+        ><span class="task-completes-count">{{ tareas_completadas}}</span>
       </div>
     </main>
   </body>
